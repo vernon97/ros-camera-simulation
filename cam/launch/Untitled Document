@@ -1,0 +1,174 @@
+<launch>
+
+    <!-- 设置launch文件的参数 -->
+    <arg name="world_name" value="$(find cam)/worlds/new.world"/>
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+
+    <!-- 运行gazebo仿真环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)" /> 
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <group ns="cam1">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam1" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam1 -param robot_description -x 0 -y 0"/> 
+    </group>
+
+	<group ns="cam2">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam2" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam2 -param robot_description -x 1 -y 1"/> 
+    </group>
+
+	<group ns="cam3">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam3" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam3 -param robot_description -x 1 -y 0"/> 
+    </group>
+
+	<group ns="cam4">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam4" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam4 -param robot_description -x -1 -y 0"/> 
+    </group>
+
+	<group ns="cam5">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam5" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam5 -param robot_description -x -1 -y 1"/> 
+    </group>
+
+	<group ns="cam6">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam6" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam6 -param robot_description -x -1 -y -1"/> 
+    </group>
+
+	<group ns="cam7">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam7" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam7 -param robot_description -x 2 -y 0"/> 
+    </group>
+
+	<group ns="cam8">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam8" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam8 -param robot_description -x 2 -y 2"/> 
+    </group>
+
+	<group ns="cam9">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam9" /> 
+
+        <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
+
+        <!-- 运行robot_state_publisher节点，发布tf  -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" >
+            <param name="publish_frequency" type="double" value="50.0" />
+        </node>
+
+        <!-- 在gazebo中加载机器人模型-->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-urdf -model cam9 -param robot_description -x 3 -y 0"/> 
+    </group>
+
+</launch>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find cam)/urdf/gazebo_robot.xacro" />
+	<xacro:include filename="$(find cam)/urdf/camera.xacro" />
+
+	<xacro:property name="camera_offset_z" value="0.035" />
+
+	<!-- Body of robot, with plates, standoffs and Create (including sim sensors) -->
+	<robot_body/>
+
+	<!-- Attach the Kinect -->
+	<joint name="${ns}camera_joint1" type="fixed">
+		<origin xyz="1.82 0 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera1_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera1"/>
+
+	<joint name="${ns}camera_joint2" type="fixed">
+		<origin xyz="1.11 2.25 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera2_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera2"/>
+
+	<joint name="${ns}camera_joint3" type="fixed">
+		<origin xyz="0 3.45 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera3_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera3"/>
+
+	<joint name="${ns}camera_joint4" type="fixed">
+		<origin xyz="-1.11 2.25 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera4_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera4"/>
+
+	<joint name="${ns}camera_joint5" type="fixed">
+		<origin xyz="-1.82 0 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera5_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera5"/>
+
+	<joint name="${ns}camera_joint6" type="fixed">
+		<origin xyz="-1.31 -2.4375 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera6_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera6"/>
+
+	<joint name="${ns}camera_joint7" type="fixed">
+		<origin xyz="0 -3.825 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera7_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera7"/>
+
+	<joint name="${ns}camera_joint8" type="fixed">
+		<origin xyz="1.31 -2.4375 ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}base_link"/>
+		<child link="${ns}camera8_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera8"/>
+
+</robot>

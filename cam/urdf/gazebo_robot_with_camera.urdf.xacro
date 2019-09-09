@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find cam)/urdf/gazebo_robot_body.urdf.xacro" />
+	<xacro:include filename="$(find cam)/urdf/camera.xacro" />
+
+	<xacro:property name="camera_offset_x" value="-0.06" />
+	<xacro:property name="camera_offset_y" value="0" />
+	<xacro:property name="camera_offset_z" value="0.035" />
+
+	<!-- Body of robot, with plates, standoffs and Create (including sim sensors) -->
+	<robot_body/>
+
+	<!-- Attach the Kinect -->
+	<joint name="${ns}camera_joint" type="fixed">
+		<origin xyz="${camera_offset_x} ${camera_offset_y} ${camera_offset_z}" rpy="0 0 0" />
+		<parent link="${ns}plate_link"/>
+		<child link="${ns}camera_link"/>
+	</joint>
+	<xacro:usb_camera prefix="camera"/>
+
+</robot>

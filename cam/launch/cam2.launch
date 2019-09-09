@@ -1,0 +1,102 @@
+<launch>
+
+    <!-- 设置launch文件的参数 -->
+    <!-- <arg name="world_name" value="$(find robotfollow_description)/worlds/cloister.world"/> -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+	
+    <!-- 运行gazebo仿真环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <!-- <arg name="world_name" value="$(arg world_name)" /> -->
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <group ns="cam1">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam1" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x 0 -y 0 -z 0" />
+			<arg name="robot_name" value="cam1" />
+		</include>
+    </group>
+
+    <group ns="cam2">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam2" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x 6.43 -y 7.66 -z 0" />
+			<arg name="robot_name" value="cam2" />
+		</include>
+    </group>
+
+    <group ns="cam3">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam3" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x 9.85 -y 8.264 -z 0" />
+			<arg name="robot_name" value="cam3" />
+		</include>
+    </group>
+
+    <group ns="cam4">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam4" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x 9.85 -y 8.264 -z 0" />
+			<arg name="robot_name" value="cam4" />
+		</include>
+    </group>
+
+    <group ns="cam5">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam5" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x 9.85 -y 8.264 -z 0" />
+			<arg name="robot_name" value="cam5" />
+		</include>
+    </group>
+
+    <group ns="cam6">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam6" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x 9.85 -y 8.264 -z 0" />
+			<arg name="robot_name" value="cam6" />
+		</include>
+    </group>
+
+    <group ns="cam7">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam7" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x -8.66 -y 15 -z 0" />
+			<arg name="robot_name" value="cam7" />
+		</include>
+    </group>
+
+    <group ns="cam8">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam8" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x -9.85 -y -1.74 -z 0" />
+			<arg name="robot_name" value="cam8" />
+		</include>
+    </group>
+
+    <group ns="cam9">
+        <!-- 加载机器人模型描述参数 -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find cam)/urdf/gazebo_robot_with_camera.urdf.xacro' ns:=cam9" /> 
+		<include file="$(find cam)/launch/robot.launch" >
+			<arg name="init_pose" value="-x -6.43 -y 2.34 -z 0" />
+			<arg name="robot_name" value="cam9" />
+		</include>
+    </group>
+
+</launch>
